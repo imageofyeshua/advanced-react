@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "./index.css";
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
@@ -12,14 +13,45 @@ function App() {
 }
 
 function Header() {
-  return <h1>Fast React Pancake Co.</h1>;
+  // const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
+  const style = {};
+  return (
+    <header className="header">
+      <h1 style={style}>Fast React Pancake Co.</h1>
+    </header>
+  );
 }
 
 function Menu() {
   return (
-    <div>
+    <main className="menu">
       <h2>Our menu</h2>
-      <Pancake />
+      <Pancake
+        name="Pancake 5Tier"
+        ingredients="Tomato and some other things"
+        photoName="pancakes/pancake01.jpg"
+        price={10}
+      />
+      <Pancake
+        name="Pancake Funghi"
+        ingredients="Tomato and some other mushrooms"
+        photoName="pancakes/pancake02.jpg"
+        price={12}
+      />
+    </main>
+  );
+}
+
+function Pancake(props) {
+  console.log(props);
+  return (
+    <div className="pancake">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price + 3}</span>
+      </div>
     </div>
   );
 }
@@ -35,22 +67,12 @@ function Footer() {
   // else alert("Sorry we're closed!");
 
   return (
-    <footer>
+    <footer className="footer">
       {new Date().toLocaleTimeString()} We're currently closed! Please don't
       ever come again!
     </footer>
   );
   // return React.createElement("footer", null, "We're currently open!");
-}
-
-function Pancake() {
-  return (
-    <div>
-      <img src="pancakes/pancake01.jpg" alt="Pancake Top" />
-      <h2>Pancake Top</h2>
-      <p>Tomato, and some good food ingredients</p>
-    </div>
-  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
