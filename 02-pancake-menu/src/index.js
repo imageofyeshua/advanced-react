@@ -24,15 +24,21 @@ function Header() {
 }
 
 function Menu() {
+  const pancakes = data;
+  const numPancakes = pancakes.length;
+
   return (
     <main className="menu">
       <h2>Our Menu</h2>
 
-      <ul className="pancakes">
-        {data.map((pancake) => (
-          <Pancake pancakeObj={pancake} key={pancake.name} />
-        ))}
-      </ul>
+      {numPancakes > 0 && (
+        <ul className="pancakes">
+          {pancakes.map((pancake) => (
+            <Pancake pancakeObj={pancake} key={pancake.name} />
+          ))}
+        </ul>
+      )}
+
       {/* <Pancake
         name="Pancake 5Tier"
         ingredients="Tomato and some other things"
@@ -57,7 +63,7 @@ function Pancake(props) {
       <div>
         <h3>{props.pancakeObj.name}</h3>
         <p>{props.pancakeObj.ingredients}</p>
-        <span>{props.pancakeObj.price + 3}</span>
+        <span>{props.pancakeObj.price}</span>
       </div>
     </li>
   );
@@ -75,8 +81,12 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()} We're currently closed! Please don't
-      ever come again!
+      {isOpen && (
+        <div className="order">
+          <p>We're open until {closeHour}:00. Come visit us or order online.</p>
+          <button className="btn">Order</button>
+        </div>
+      )}
     </footer>
   );
   // return React.createElement("footer", null, "We're currently open!");
