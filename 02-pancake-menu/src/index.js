@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+import data from "./data.js";
 
 function App() {
   return (
@@ -25,8 +26,14 @@ function Header() {
 function Menu() {
   return (
     <main className="menu">
-      <h2>Our menu</h2>
-      <Pancake
+      <h2>Our Menu</h2>
+
+      <ul className="pancakes">
+        {data.map((pancake) => (
+          <Pancake pancakeObj={pancake} key={pancake.name} />
+        ))}
+      </ul>
+      {/* <Pancake
         name="Pancake 5Tier"
         ingredients="Tomato and some other things"
         photoName="pancakes/pancake01.jpg"
@@ -37,7 +44,7 @@ function Menu() {
         ingredients="Tomato and some other mushrooms"
         photoName="pancakes/pancake02.jpg"
         price={12}
-      />
+      /> */}
     </main>
   );
 }
@@ -45,14 +52,14 @@ function Menu() {
 function Pancake(props) {
   console.log(props);
   return (
-    <div className="pancake">
-      <img src={props.photoName} alt={props.name} />
+    <li className="pancake">
+      <img src={props.pancakeObj.photoName} alt={props.pancakeObj.name} />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredients}</p>
-        <span>{props.price + 3}</span>
+        <h3>{props.pancakeObj.name}</h3>
+        <p>{props.pancakeObj.ingredients}</p>
+        <span>{props.pancakeObj.price + 3}</span>
       </div>
-    </div>
+    </li>
   );
 }
 

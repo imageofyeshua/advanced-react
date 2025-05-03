@@ -42,3 +42,5 @@ const pancakeData = [
     soldOut: false,
   },
 ];
+
+export default pancakeData;
